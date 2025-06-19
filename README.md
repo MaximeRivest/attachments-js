@@ -67,19 +67,19 @@ The canonical order is still:
 ```ts
 const result = await pipe(
   attach('document.pdf[pages:1-5]')
-)(
+    )(
   load.pdfToPdfPlumber
-)(
+    )(
   modify.pages
-)(
+    )(
   present.markdown
-)(
+    )(
   present.images
-)(
+    )(
   refine.addHeaders
-)(
+    )(
   refine.truncate
-)(
+    )(
   adapt.claude, 'Analyse this content'
 )();          // ← unwrap final value
 ```
@@ -89,11 +89,11 @@ const result = await pipe(
 ```ts
 const title = await pipe(
   attach('https://en.wikipedia.org/wiki/Llama[select:title]')
-)(
+    )(
   load.urlToDom
-)(
+    )(
   modify.select
-)(
+    )(
   present.text
 )();
 ```
@@ -105,17 +105,17 @@ type CsvAnalyzer = (src: string) => Promise<ReturnType<typeof attach>>;
 
 const csvAnalyzer: CsvAnalyzer = (source) => pipe(
   attach(source)
-)(
+    )(
   load.csvToPandas
-)(
+    )(
   modify.limit
-)(
+    )(
   present.head
-)(
+    )(
   present.summary
-)(
+    )(
   present.metadata
-)(
+    )(
   refine.addHeaders
 )();
 
